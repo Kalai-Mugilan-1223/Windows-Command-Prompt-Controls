@@ -1,187 +1,177 @@
-b
+# Windows Command Prompt Reference Guide
+
+A comprehensive guide to essential Windows CMD commands for file management, application launching, and system operations.
+
+## Table of Contents
+- [Environment Variables](#environment-variables)
+- [Application Management](#application-management)
+- [Package Management](#package-management)
+- [Directory Operations](#directory-operations)
+- [File Operations](#file-operations)
+- [Navigation](#navigation)
+- [System Commands](#system-commands)
+
+## Environment Variables
+
+### Setting Environment Variables
+Environment variables allow you to create shortcuts to frequently used paths and applications.
+
+#### Temporary Variables (Session Only)
+```cmd
+set <var_name>="<path>"
+```
+*Note: No spaces around the equals sign*
+
+#### Permanent Variables (Persistent)
+```cmd
+setx <var_name> "<path>"
+```
+
+**Example:**
+```cmd
+setx chrome "C:\Program Files\Google\Chrome\Application\chrome.exe"
+```
+
+## Application Management
+
+### Launching Applications
+#### Open Application with Environment Variable
+```cmd
+start "" "%<var_name>%"
+```
+
+#### Open Chrome with Specific URL
+```cmd
+start "" "%chrome%" --new-tab <url>
+```
+
+#### Open Application from Current Directory
+```cmd
+<filename.extension>
+```
+
+## Package Management
+
+### Windows Package Manager (winget)
+#### Search for Packages
+```cmd
+winget search <package_name>
+```
+
+#### Install Packages
+```cmd
+winget install <package_name>
+```
+
+**Example:**
+```cmd
+winget install Python.Python.3.10
+```
+
+## Directory Operations
+
+### Creating Directories
+```cmd
+mkdir <folder_name>
+md <folder_name>
+```
+
+### Removing Directories
+```cmd
+rmdir /s /q <folder_name>
+```
+*Note: `/s` removes all subdirectories and files, `/q` runs quietly without confirmation*
+
+## File Operations
+
+### Creating Files
+```cmd
+type nul > <filename.extension>
+```
+*Note: Always include the file extension*
+
+### Deleting Files
+```cmd
+del <filename.extension>
+```
+
+### Listing Directory Contents
+```cmd
+dir
+```
 
+## Navigation
 
+### Change Directory
+#### Direct Path Change
+```cmd
+cd "<path>"
+```
 
-**1.Set the variable name to the path** 
+#### Change Drive and Directory Simultaneously
+```cmd
+cd /d D:\Path\To\Folder
+```
 
+#### Navigate to Parent Directory
+```cmd
+cd..
+```
 
+#### Change Drive
+```cmd
+D:
+```
 
-**## Temperary set**
+#### View Current Directory
+```cmd
+cd
+```
 
-set <var\_name>="<path>" #no space between varname and the path
+## System Commands
 
+### Clear Screen
+```cmd
+cls
+```
 
+### Display System Information
+```cmd
+systeminfo
+```
 
-**##Permenant set** 
+### View Running Processes
+```cmd
+tasklist
+```
 
-setx <var\_name> "<path>"
+## Best Practices
 
+1. **Use Quotes**: Always wrap paths containing spaces in double quotes
+2. **Environment Variables**: Use permanent variables (`setx`) for frequently accessed applications
+3. **Backup**: Be cautious with delete operations (`del`, `rmdir`) as they may be irreversible
+4. **Testing**: Test commands in a safe environment before using them on important files
 
+## Common Examples
 
-**2.Access the app that is declared** 
+```cmd
+# Set Chrome as environment variable
+setx chrome "C:\Program Files\Google\Chrome\Application\chrome.exe"
 
+# Open Chrome with Google
+start "" "%chrome%" --new-tab https://www.google.com
 
+# Navigate to Desktop
+cd "%USERPROFILE%\Desktop"
 
-**##to open any app that is set with the var name:**
+# Create project folder and navigate to it
+mkdir MyProject
+cd MyProject
 
+# Create a Python file
+type nul > main.py
 
-
-start "" "%<var\_name>%"
-
-
-
-**eg:**
-
-start "" "%chrome%" 
-
-
-
-**##to open chrome from cmd with the specified link**
-
-start "" "%chrome%" --new-tab <link>
-
-
-
-**3.To install any package or applications from the command prompt** 
-
-
-
-**##search for the presence of that package**
-
-
-
-winget searcg <package\_name>
-
-
-
-**##install the package that is required**
-
-
-
-winget install <package\_name>
-
-
-
-**eg:**
-
-winget install python3.10
-
-
-
-**4.to create a directory that is not existing**
-
-
-
-**(Make sure you are in the targeted directory)**
-
-
-
-**##mkdir**
-
-
-
-mkdir <folder\_name>
-
-md <folder\_name>
-
-
-
-**5.to create a file that is not existing**
-
-
-
-**(Make sure you are in the targeted directory)**
-
-
-
-**##type nul** 
-
-
-
-type nul > <file\_name.extension>  #note: the filename should be given with extension
-
-
-
-**6.to Open an app in the targeted directory** 
-
-
-
-**(Ensure the target directory)**
-
-
-
-<file\_name.extension>
-
-
-
-**7.to change directory**
-
-
-
-**##to directly change the path**
-
-
-
-> cd "<path>"
-
-
-
-**##For changing drives and directories in one command**
-
-
-
-> cd /d D:\\Path\\To\\Folder
-
- 
-
-**## to get back to the previous folder** 
-
-> cd..
-
-
-
-**## to change to another disk** 
-
-> cd D:
-
-
-(and then move to your required dir)
-
-
-
-**8. to list all the files in the directory**
-
-
-
-> dir
-
-
-
-**9. to clear the screen**
-
-
-
-> cls
-
-
-
-**10. to view current directory**
-
-
-
-> cd
-
-
-
-**11. to delete all files or folders**
-
-
-
-> del filename.txt ##to remove file
-
-
-
-> rmdir /s /q foldername ##to remove folder 
-
-
+# Install Visual Studio Code
+winget install Microsoft.VisualStudioCode
+```
 
