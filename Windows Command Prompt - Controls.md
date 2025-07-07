@@ -140,7 +140,7 @@ tasklist
 
 ## Hotkey Integration
 
-AutoHotKey Script (`CommandPrompt-key-binding-script.exe`) is configured to:
+AutoHotKey Script (`CommandPrompt.exe`) is configured to:
 
 * Open Command Prompt with a specific key combination
 * Launch predefined CMD tasks via hotkey mappings
@@ -150,7 +150,7 @@ AutoHotKey Script (`CommandPrompt-key-binding-script.exe`) is configured to:
 Store the script at:
 
 ```plaintext
-C:\Scripts\CommandPrompt-key-binding-script.exe
+C:\Scripts\CommandPrompt.exe
 ```
 
 Ensure the script is registered in startup apps or Task Scheduler for auto-initialization whenever the system restarts.
