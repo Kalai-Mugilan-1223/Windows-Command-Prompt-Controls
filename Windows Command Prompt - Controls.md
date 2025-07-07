@@ -46,6 +46,18 @@ start "" "%chrome%" --new-tab <link>
 
 
 
+**##search for the presence of that package**
+
+
+
+winget searcg <package\_name>
+
+
+
+**##install the package that is required**
+
+
+
 winget install <package\_name>
 
 
@@ -87,4 +99,89 @@ md <folder\_name>
 
 
 type nul > <file\_name.extension>  #note: the filename should be given with extension
+
+
+
+**6.to Open an app in the targeted directory** 
+
+
+
+**(Ensure the target directory)**
+
+
+
+<file\_name.extension>
+
+
+
+**7.to change directory**
+
+
+
+**##to directly change the path**
+
+
+
+> cd "<path>"
+
+
+
+**##For changing drives and directories in one command**
+
+
+
+> cd /d D:\\Path\\To\\Folder
+
+ 
+
+**## to get back to the previous folder** 
+
+> cd..
+
+
+
+**## to change to another disk** 
+
+> cd D:
+
+
+(and then move to your required dir)
+
+
+
+**8. to list all the files in the directory**
+
+
+
+> dir
+
+
+
+**9. to clear the screen**
+
+
+
+> cls
+
+
+
+**10. to view current directory**
+
+
+
+> cd
+
+
+
+**11. to delete all files or folders**
+
+
+
+> del filename.txt ##to remove file
+
+
+
+> rmdir /s /q foldername ##to remove folder 
+
+
 
