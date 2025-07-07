@@ -45,5 +45,6 @@ This reference covers how to:
      * Batch scripting via `bye.bat`
      * Persistent storage and execution from `C:\Scripts`
      * Environment variable integration for global access
-     * and some additional commands
+
+ and some additional commands
 ---
