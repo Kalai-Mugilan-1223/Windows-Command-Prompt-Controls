@@ -1,101 +1,102 @@
 # Windows Command Prompt Reference Guide
 
-A comprehensive guide to essential Windows CMD commands for file management, application launching, and system operations.
+A comprehensive guide to essential Windows CMD commands for file management, application launching, system operations, with direct browser access and automation support.
 
 ## Table of Contents
-- [Environment Variables](#environment-variables)
-- [Application Management](#application-management)
-- [Package Management](#package-management)
-- [Directory Operations](#directory-operations)
-- [File Operations](#file-operations)
-- [Navigation](#navigation)
-- [System Commands](#system-commands)
+
+* [Environment Variables](#environment-variables)
+* [Application Management](#application-management)
+* [Package Management](#package-management)
+* [Directory Operations](#directory-operations)
+* [File Operations](#file-operations)
+* [Navigation](#navigation)
+* [System Commands](#system-commands)
+* [Hotkey Integration](#hotkey-integration)
+* [Startup and Script Automation](#startup-and-script-automation)
 
 ## Environment Variables
 
-### Setting Environment Variables
-Environment variables allow you to create shortcuts to frequently used paths and applications.
+### Temporary Variables (Session Only)
 
-#### Temporary Variables (Session Only)
 ```cmd
 set <var_name>="<path>"
 ```
-*Note: No spaces around the equals sign*
 
-#### Permanent Variables (Persistent)
+### Permanent Variables (Persistent)
+
 ```cmd
 setx <var_name> "<path>"
 ```
 
-**Example:**
-```cmd
-setx chrome "C:\Program Files\Google\Chrome\Application\chrome.exe"
-```
-
 ## Application Management
 
-### Launching Applications
-#### Open Application with Environment Variable
+### Launching Browsers Directly
+
+Assuming the browser paths are added to system PATH or set via environment variables:
+
+#### Launch Chrome
+
 ```cmd
-start "" "%<var_name>%"
+start chrome "<url>"
 ```
 
-#### Open Chrome with Specific URL
+#### Launch Edge
+
 ```cmd
-start "" "%chrome%" --new-tab <url>
+start msedge "<url>"
 ```
 
-#### Open Application from Current Directory
+#### Launch Firefox
+
 ```cmd
-<filename.extension>
+start firefox "<url>"
+```
+
+### General Application Launch
+
+```cmd
+start "" <application>
 ```
 
 ## Package Management
 
 ### Windows Package Manager (winget)
-#### Search for Packages
+
 ```cmd
 winget search <package_name>
-```
-
-#### Install Packages
-```cmd
 winget install <package_name>
-```
-
-**Example:**
-```cmd
-winget install Python.Python.3.10
 ```
 
 ## Directory Operations
 
 ### Creating Directories
+
 ```cmd
 mkdir <folder_name>
-md <folder_name>
 ```
 
 ### Removing Directories
+
 ```cmd
 rmdir /s /q <folder_name>
 ```
-*Note: `/s` removes all subdirectories and files, `/q` runs quietly without confirmation*
 
 ## File Operations
 
 ### Creating Files
+
 ```cmd
 type nul > <filename.extension>
 ```
-*Note: Always include the file extension*
 
 ### Deleting Files
+
 ```cmd
 del <filename.extension>
 ```
 
 ### Listing Directory Contents
+
 ```cmd
 dir
 ```
@@ -103,75 +104,106 @@ dir
 ## Navigation
 
 ### Change Directory
-#### Direct Path Change
+
 ```cmd
 cd "<path>"
-```
-
-#### Change Drive and Directory Simultaneously
-```cmd
 cd /d D:\Path\To\Folder
-```
-
-#### Navigate to Parent Directory
-```cmd
 cd..
+cd
 ```
 
-#### Change Drive
+### Change Drive
+
 ```cmd
 D:
-```
-
-#### View Current Directory
-```cmd
-cd
 ```
 
 ## System Commands
 
 ### Clear Screen
+
 ```cmd
 cls
 ```
 
-### Display System Information
+### Display System Info
+
 ```cmd
 systeminfo
 ```
 
-### View Running Processes
+### View Processes
+
 ```cmd
 tasklist
 ```
 
-## Best Practices
+## Hotkey Integration
 
-1. **Use Quotes**: Always wrap paths containing spaces in double quotes
-2. **Environment Variables**: Use permanent variables (`setx`) for frequently accessed applications
-3. **Backup**: Be cautious with delete operations (`del`, `rmdir`) as they may be irreversible
-4. **Testing**: Test commands in a safe environment before using them on important files
+AutoHotKey Script (`CommandPrompt-key-binding-script.exe`) is configured to:
 
-## Common Examples
+* Open Command Prompt with a specific key combination
+* Launch predefined CMD tasks via hotkey mappings
+
+### Script Location
+
+Store the script at:
+
+```plaintext
+C:\Scripts\CommandPrompt-key-binding-script.exe
+```
+
+Ensure the script is registered in startup apps or Task Scheduler for auto-initialization whenever the system restarts.
+
+## Startup and Script Automation
+
+The `bye.bat` file contains:
+
+* Auto-run browser launch commands
+* Scripted file or folder setup
+* Environment preloading
+
+### Script Location
+
+Store the script at:
+
+```plaintext
+C:\Scripts\bye.bat
+```
+
+### Integration
+
+* Add `C:\Scripts\bye.bat` to system environment variables for global access:
 
 ```cmd
-# Set Chrome as environment variable
-setx chrome "C:\Program Files\Google\Chrome\Application\chrome.exe"
+setx bye "C:\Scripts\bye.bat"
+```
 
-# Open Chrome with Google
-start "" "%chrome%" --new-tab https://www.google.com
+* Launch via:
 
-# Navigate to Desktop
+```cmd
+start "" "%bye%"
+```
+
+## Common Usage Examples
+
+```cmd
+:: Launch Google in Chrome
+start chrome https://www.google.com
+
+:: Navigate to Desktop and setup project
 cd "%USERPROFILE%\Desktop"
-
-# Create project folder and navigate to it
 mkdir MyProject
 cd MyProject
-
-# Create a Python file
 type nul > main.py
 
-# Install Visual Studio Code
+:: Install Visual Studio Code
 winget install Microsoft.VisualStudioCode
 ```
 
+## Best Practices
+
+1. Always quote paths with spaces
+2. Use permanent environment variables for frequently accessed tools
+3. Avoid irreversible deletes without confirmation in testing environments
+4. Configure scripts in startup for consistent automation
